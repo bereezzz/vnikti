@@ -73,39 +73,29 @@
   ],
   "cards": [
     {
-      "id": 0,
-      "nameUser": "Artem",
-      "number": "12312123"
+      "name": "123",
+      "number": "123",
+      "id": 7
     },
     {
-      "id": 1,
-      "nameUser": "Artem1",
-      "number": "12312123"
+      "name": "123",
+      "number": "",
+      "id": 8
     },
     {
-      "id": 2,
-      "nameUser": "Artem2",
-      "number": "12312123"
+      "name": "t123321twes",
+      "number": "123123rewsd",
+      "id": 9
     },
     {
-      "id": 3,
-      "nameUser": "Artem3",
-      "number": "12312123"
+      "name": "test",
+      "number": "test",
+      "id": 10
     },
     {
-      "id": 4,
-      "nameUser": "Artem4",
-      "number": "12312123"
-    },
-    {
-      "id": 5,
-      "nameUser": "Artem5",
-      "number": "12312123"
-    },
-    {
-      "id": 6,
-      "nameUser": "Artem6",
-      "number": "12312123"
+      "name": "testLast",
+      "number": "testNumber",
+      "id": 11
     }
   ]
 }

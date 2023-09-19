@@ -10,7 +10,7 @@ import { RootState } from '../../Store/RootReducer';
 import { Card } from '../../Entities/Cards/CardSlice';
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import ModalWindow from '../ModalWindow/ModalWindow';
-
+import ModalCard from '../../Widgets/ModalCard/ModalCard';
 interface TableCardProps {
   data: Card[]
   refetch: () => void
@@ -36,7 +36,7 @@ const TableCard: React.FC<TableCardProps> = ({ data, refetch }) => {
         header: 'id',
       },
       {
-        accessorKey: 'nameUser',
+        accessorKey: 'name',
         header: 'Пользователь',
       },
       {
@@ -57,18 +57,18 @@ const TableCard: React.FC<TableCardProps> = ({ data, refetch }) => {
         <FaEdit style={{ cursor: "pointer" }} onClick={() => { setEditActive(true) }} />
         <FaTrash style={{ cursor: "pointer" }} onClick={() => setDeleteActive(true)} />
         <ModalWindow active={editActive} setActive={setEditActive}>
-          {/* <ModalUser active={editActive} setActive={setEditActive}
+          <ModalCard active={editActive} setActive={setEditActive}
             refetch={refetch} type={"edit"}
             nameProps={row.row.original.name}
-            emailProps={row.row.original.email}
-            id={row.row.original.id} /> */}
+            numberProps={row.row.original.number}
+            id={row.row.original.id} />
         </ModalWindow>
         <ModalWindow active={deleteActive} setActive={setDeleteActive}>
-        {/* <ModalUser active={deleteActive} setActive={setDeleteActive}
+         <ModalCard active={deleteActive} setActive={setDeleteActive}
             refetch={refetch} type={"del"}
             nameProps={row.row.original.name}
-            emailProps={row.row.original.email}
-            id={row.row.original.id} /> */}
+            numberProps={row.row.original.number}
+            id={row.row.original.id} /> 
         </ModalWindow>
       </div>
     ),
@@ -76,6 +76,7 @@ const TableCard: React.FC<TableCardProps> = ({ data, refetch }) => {
   });
 
   useEffect(() => {
+    
     if (table.options.state?.pagination?.pageIndex !== undefined) {
       handlePageChange(table.options.state?.pagination?.pageIndex)
     }
@@ -83,7 +84,6 @@ const TableCard: React.FC<TableCardProps> = ({ data, refetch }) => {
 
   }, [table.options.state?.pagination?.pageIndex])
   useEffect(() => {
-    console.log(data)
     if (table.options.state?.pagination?.pageSize !== undefined) {
 
       handleCountRows(table.options.state?.pagination?.pageSize)

@@ -76,8 +76,7 @@ const Table: React.FC<TableProps> = ({ data, refetch }) => {
   });
 
   useEffect(() => {
-    console.log(data)
-    console.log(currentPage, countRows)
+
     if (table.options.state?.pagination?.pageIndex !== undefined) {
       handlePageChange(table.options.state?.pagination?.pageIndex)
     }

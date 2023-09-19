@@ -18,7 +18,6 @@ const TableUser: React.FC<TableUserProps> = ({ }) => {
     const { data: users, isLoading, isError,refetch: refetchUsers } = useGetUsersQuery();
 
     useEffect(() => {
-        console.log(users)
         if (users) {
             dispatch(setUsers(users));
         }

@@ -7,7 +7,7 @@ import { useGetCardsQuery } from '../../Entities/Users/UsersAPIs';
 import { useSelector, useDispatch } from 'react-redux'
 import "../TableUser/tableUser.scss"
 import ModalWindow from '../../Features/ModalWindow/ModalWindow';
-
+import ModalCard from '../ModalCard/ModalCard';
 
 interface TableCardWidgetsProps {
 
@@ -19,7 +19,7 @@ const TableCardWidgets: React.FC<TableCardWidgetsProps> = ({ }) => {
     const { data: cards, isLoading, isError,refetch: refetchCards } = useGetCardsQuery();
 
     useEffect(() => {
-        console.log(cards)
+
         if (cards) {
             dispatch(setCards(cards));
         }
@@ -30,7 +30,7 @@ const TableCardWidgets: React.FC<TableCardWidgetsProps> = ({ }) => {
                 <CustomButton onClick={() => setActive(true)}>Добавить запись</CustomButton>
             </div>
             <ModalWindow active={active} setActive={setActive}>
-                {/* <ModalUser active={active} setActive={setActive}  refetch={refetchUsers} type={"add"}/> */}
+                <ModalCard active={active} setActive={setActive}  refetch={refetchCards} type={"add"}/>
             </ModalWindow>
             {
                 cards !== undefined && <TableCard data={cards} refetch={refetchCards}></TableCard>
