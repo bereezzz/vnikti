@@ -1,0 +1,80 @@
+.modal {
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: scale(0);
+}
+
+.modal.active {
+  transform: scale(1);
+  z-index: 100;
+}
+
+.icnClose {
+  float: right;
+  padding-right: 14px;
+}
+
+.icnClose svg {
+  position: absolute; /* блок занимает ширину содержимого, max-width её ограничивает */
+  width: 24px;
+}
+.icnCloseTask svg {
+  
+  width: 24px;
+}
+.modal__content {
+  padding: 20px;
+  padding-top: 10px;
+  border-radius: 12px;
+  background-color: white;
+  min-width: 300px;
+  text-decoration: none;
+  font-size: 18px;
+  text-align: start;
+}
+
+.Title {
+  padding-top: 10px;
+}
+
+.modal__content p {
+  margin-bottom: 0;
+}
+
+.wide {
+  width: 650px;
+}
+
+.wideMWP {
+  width: 400px;
+}
+
+.veryWide {
+  min-width: 1000px;
+}
+
+.CntlAlign {
+  text-align: center;
+}
+
+.minH100 {
+  min-height: 100px;
+}
+
+
+// ErrorWindow
+.errorWindow{
+  text-align: center;
+  max-width: 50vw;
+}
+.scrollWindow{
+  max-height: calc(100vh - 350px);
+  overflow: auto;
+}
