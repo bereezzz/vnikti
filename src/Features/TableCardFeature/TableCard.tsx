@@ -5,43 +5,43 @@ import {
   type MRT_ColumnDef,
 } from 'mantine-react-table';
 import { useSelector, useDispatch } from 'react-redux';
-import { setCurrentPage, setCountRows } from './TableSlice';
+import { setCurrentPageCard, setCountRowsCard } from './TableCardSlice';
 import { RootState } from '../../Store/RootReducer';
-import { User } from '../../Entities/Users/UsersSlice';
+import { Card } from '../../Entities/Cards/CardSlice';
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import ModalWindow from '../ModalWindow/ModalWindow';
-import ModalUser from '../../Widgets/ModalUser/ModalUser';
-interface TableProps {
-  data: User[]
+
+interface TableCardProps {
+  data: Card[]
   refetch: () => void
 
 }
 
-const Table: React.FC<TableProps> = ({ data, refetch }) => {
-  const currentPage = useSelector((state: RootState) => state.table.currentPage);
-  const countRows = useSelector((state: RootState) => state.table.countRows);
+const TableCard: React.FC<TableCardProps> = ({ data, refetch }) => {
+  const currentPage = useSelector((state: RootState) => state.tableCard.currentPageCard);
+  const countRows = useSelector((state: RootState) => state.tableCard.countRowsCard);
   const [deleteActive, setDeleteActive] = useState(false)
   const [editActive, setEditActive] = useState(false)
   const dispatch = useDispatch();
   const handlePageChange = (newPage: number) => {
-    dispatch(setCurrentPage(newPage));
+    dispatch(setCurrentPageCard(newPage));
   };
   const handleCountRows = (count: number) => {
-    dispatch(setCountRows(count));
+    dispatch(setCountRowsCard(count));
   }
-  const columns = useMemo<MRT_ColumnDef<User>[]>(
+  const columns = useMemo<MRT_ColumnDef<Card>[]>(
     () => [
       {
         accessorKey: 'id',
-        header: 'id1',
+        header: 'id',
       },
       {
-        accessorKey: 'name',
-        header: 'name1',
+        accessorKey: 'nameUser',
+        header: 'Пользователь',
       },
       {
-        accessorKey: 'email',
-        header: 'email1',
+        accessorKey: 'number',
+        header: 'Номер карты',
       },
     ],
     [],
@@ -57,18 +57,18 @@ const Table: React.FC<TableProps> = ({ data, refetch }) => {
         <FaEdit style={{ cursor: "pointer" }} onClick={() => { setEditActive(true) }} />
         <FaTrash style={{ cursor: "pointer" }} onClick={() => setDeleteActive(true)} />
         <ModalWindow active={editActive} setActive={setEditActive}>
-          <ModalUser active={editActive} setActive={setEditActive}
+          {/* <ModalUser active={editActive} setActive={setEditActive}
             refetch={refetch} type={"edit"}
             nameProps={row.row.original.name}
             emailProps={row.row.original.email}
-            id={row.row.original.id} />
+            id={row.row.original.id} /> */}
         </ModalWindow>
         <ModalWindow active={deleteActive} setActive={setDeleteActive}>
-        <ModalUser active={deleteActive} setActive={setDeleteActive}
+        {/* <ModalUser active={deleteActive} setActive={setDeleteActive}
             refetch={refetch} type={"del"}
             nameProps={row.row.original.name}
             emailProps={row.row.original.email}
-            id={row.row.original.id} />
+            id={row.row.original.id} /> */}
         </ModalWindow>
       </div>
     ),
@@ -76,8 +76,6 @@ const Table: React.FC<TableProps> = ({ data, refetch }) => {
   });
 
   useEffect(() => {
-    console.log(data)
-    console.log(currentPage, countRows)
     if (table.options.state?.pagination?.pageIndex !== undefined) {
       handlePageChange(table.options.state?.pagination?.pageIndex)
     }
@@ -85,6 +83,7 @@ const Table: React.FC<TableProps> = ({ data, refetch }) => {
 
   }, [table.options.state?.pagination?.pageIndex])
   useEffect(() => {
+    console.log(data)
     if (table.options.state?.pagination?.pageSize !== undefined) {
 
       handleCountRows(table.options.state?.pagination?.pageSize)
@@ -94,4 +93,4 @@ const Table: React.FC<TableProps> = ({ data, refetch }) => {
   return <MantineReactTable table={table} />;
 };
 
-export default Table;
+export default TableCard;

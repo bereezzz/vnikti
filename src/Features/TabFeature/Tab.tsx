@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Tabs } from '@mantine/core';
 import TableUser from '../../Widgets/TableUser/TableUser';
-
+import TableCardWidgets from '../../Widgets/TableCard/TableCardWidgets';
 function Tab() {
 
   return (
@@ -20,6 +20,7 @@ function Tab() {
       </Tabs.Panel>
 
       <Tabs.Panel value="tab2">
+        <TableCardWidgets></TableCardWidgets>
       </Tabs.Panel>
 
 
