@@ -40,7 +40,7 @@ const cardSlice = createSlice({
     addCard: (state, action: PayloadAction<Card>) => {
       state.cards.push(action.payload);
     },
-    
+
   },
 });
 

@@ -1,11 +1,6 @@
 {
   "users": [
     {
-      "id": 2,
-      "name": "1243",
-      "email": "13as1223@mail.ru"
-    },
-    {
       "id": 3,
       "name": "123312123",
       "email": "13122asdas3@mail.ru"
@@ -69,6 +64,11 @@
       "name": "test1",
       "email": "test1",
       "id": 15
+    },
+    {
+      "name": "testLast123",
+      "email": "asdadas",
+      "id": 16
     }
   ],
   "cards": [

@@ -3,16 +3,15 @@ import { Input } from '@mantine/core';
 import CustomButton from "../../Features/Button/CustomButton";
 import "./modalUser.scss"
 import { useCreateUserMutation, useUpdateUserMutation, useDeleteUserMutation } from '../../Entities/Users/UsersAPIs';
-import { useSelector, useDispatch } from 'react-redux'
-import { addUser } from '../../Entities/Users/UsersSlice';
+
 interface ModalUserInterface {
-    setActive: (check: boolean) => void;
-    active: boolean;
-    refetch: () => void
-    type: string,
-    nameProps?: string,
-    emailProps?: string,
-    id?: number,
+    setActive: (check: boolean) => void; // Функция для установки активности модального окна
+    active: boolean; // Флаг активности модального окна
+    refetch: () => void // Функция для перезагрузки данных
+    type: string, // Тип модального окна ("add", "edit", "del")
+    nameProps?: string, // Имя пользователя (для редактирования и удаления)
+    emailProps?: string,   // почта пользователя (для редактирования и удаления)
+    id?: number, // Идентификатор строки
 }
 
 const ModalUser: React.FC<ModalUserInterface> = ({ active, setActive, refetch, type, nameProps, emailProps, id }) => {
@@ -21,7 +20,7 @@ const ModalUser: React.FC<ModalUserInterface> = ({ active, setActive, refetch, t
     const [email, setEmail] = useState("")
     const [updateUserMutation] = useUpdateUserMutation();
     const [deleteUserMutation] = useDeleteUserMutation();
-    const dispatch = useDispatch();
+
     //Добавление пользователя
     const handleCreateUser = async () => {
         try {
@@ -36,6 +35,7 @@ const ModalUser: React.FC<ModalUserInterface> = ({ active, setActive, refetch, t
             console.error('Ошибка при создании пользователя:', error);
         }
     };
+
     //Редактирование пользователя
     const handleEditUser = async () => {
         try {
@@ -52,11 +52,12 @@ const ModalUser: React.FC<ModalUserInterface> = ({ active, setActive, refetch, t
             console.error('Ошибка при редактировании пользователя:', error);
         }
     };
+
     //Удаление пользователя
     const handleDeleteUser = async () => {
         try {
             if (id !== undefined) {
-                const resultAction = await deleteUserMutation(id); 
+                const resultAction = await deleteUserMutation(id);
             }
             setActive(false);
             refetch();
@@ -64,12 +65,15 @@ const ModalUser: React.FC<ModalUserInterface> = ({ active, setActive, refetch, t
             console.error('Ошибка при удалении пользователя:', error);
         }
     };
+
+     // Установка значений полей при редактировании
     useEffect(() => {
         if (type === "edit" && emailProps !== undefined && nameProps !== undefined) {
             setEmail(emailProps)
             setName(nameProps)
         }
     }, [])
+    
     if (type === "add" || type === "edit") {
         return (
             <div className="modalUser">
@@ -89,9 +93,6 @@ const ModalUser: React.FC<ModalUserInterface> = ({ active, setActive, refetch, t
             <CustomButton onClick={() => setActive(false)}>Отмена</CustomButton>
         </div>
     )
-
-
-
 };
 
 export default ModalUser;

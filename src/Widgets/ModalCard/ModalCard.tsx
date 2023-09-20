@@ -3,16 +3,16 @@ import { Input } from '@mantine/core';
 import CustomButton from "../../Features/Button/CustomButton";
 import "../ModalUser/modalUser.scss"
 import {  useCreateCardMutation, useUpdateCardMutation, useDeleteCardMutation  } from '../../Entities/Users/UsersAPIs';
-import { useSelector, useDispatch } from 'react-redux'
-import { addUser } from '../../Entities/Users/UsersSlice';
+import {  useDispatch } from 'react-redux'
+
 interface ModalCardInterface {
-    setActive: (check: boolean) => void;
-    active: boolean;
-    refetch: () => void
-    type: string,
-    nameProps?: string,
-    numberProps?: string,
-    id?: number,
+    setActive: (check: boolean) => void; // Функция для установки активности модального окна
+    active: boolean; // Флаг активности модального окна
+    refetch: () => void // Функция для перезагрузки данных
+    type: string, // Тип модального окна ("add", "edit", "del")
+    nameProps?: string, // Имя карточки (для редактирования и удаления)
+    numberProps?: string,  // Номер карты (для редактирования и удаления)
+    id?: number, // Идентификатор строки
 }
 
 const ModalCard: React.FC<ModalCardInterface> = ({ active, setActive, refetch, type, nameProps, numberProps, id }) => {
@@ -65,6 +65,7 @@ const ModalCard: React.FC<ModalCardInterface> = ({ active, setActive, refetch, t
             console.error('Ошибка при удалении пользователя:', error);
         }
     };
+     // Установка значений полей при редактировании
     useEffect(() => {
         if (type === "edit" && numberProps !== undefined && nameProps !== undefined) {
             setNumber(numberProps)
